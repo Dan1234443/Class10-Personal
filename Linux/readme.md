@@ -845,35 +845,36 @@ a = (all) users , groups and others
 chmod u+rwx, g+rw , o+w   filename 
       user   group  others   chmod a-x filename 
 
-## chmod -R permission "filename" : 
+## chmod -R <permission> "<directory-name>" : 
 
- This will change the directory permission and all the directories and files within that directory 
+This will change the directory permission and all the directories and files within that directory 
 
 
-  
 Note; Directory Has seperate permissions regardless of what the files have as permissions
 
 
 ## How to change ownership of a file or directory 
 
-chown : means change ownership 
- ## sudo chown "username" "filename"  
+`chown` : means change ownership 
+`sudo chown "username" "filename" ` 
+
+
  Only the owner of a file or the root user can change the ownership of a file 
 
- chgrp : means change group  
- ## sudo chgrp "groupname"  "filename" this will change the name of the group for that particular file 
+ `chgrp` : means change group  
+ `sudo chgrp "groupname"  "filename" ` this will change the name of the group for that particular file 
 
-seneca refund
 
 
 # LINUX DIRECTORY STRUCTURE  (FILE STRUCTURE)  / = ROOT directory 
 
+Path 
 
 Linux file system is based on a hierachical structure ( tree branches )
 
 File structure that came operating system 
 
-## / (Root Directory) ;  
+## / (Root Directory) ;    `/`
   This is the top level directory in the file system . All other directories within the system lives inside this direcory and that is why its called the root 
 
 ## /Bin (Binaries)
@@ -891,8 +892,7 @@ This directory (folder) contains files that helps the operating system (Linux Ke
 This is the home directory of the root user . 
 
 ## /dev ( Devices)
-It contains device files that represents hardware and virtual devices (/dev/sda)--> storage
-represents hard drive 
+It contains device files that represents hardware and virtual devices (/dev/sda)--> storage represents hard drive 
 
 ## /sbin ( system binaries)
 This directory contains administrative binaries (commands ) .These binaries (commands) helps to carryout task such as , rebooting the operating system (root user)
@@ -904,7 +904,7 @@ This contains system wide configuration files and it contains shell scripts used
 It contains data(information) for services provided by the system e.g web server files by default this directory is empty . 
 
 ## /home 
-The home directory stores stores users .Each user on the Linux server has its own directory 
+The home directory stores users .Each user on the Linux server has its own directory 
 
 ## /tmp (Temporary Files)
 This directory is used to store temporary files created or from your application.At boot the files are deleted 
@@ -968,10 +968,6 @@ Linux File / Directory Permissions
 Linux File Structure 
 
 
-Jenkins ( Dev + Staging ) downloaded application (software ) : Jenkins 
-
-
-
 Linux Operating System Process Management 
 
 # PROCESS MANAGEMENT 
@@ -983,10 +979,7 @@ This involves you creating , managing , monitor & terminate process in Linux Ope
 
 
 Mac : Activity Monitor
-Windows: Task Manager 
-
-
-kill process ( stop )
+Windows: Task Manager
 
 
 ## Benefits of Process Management in Linux 
@@ -1003,40 +996,37 @@ kill process ( stop )
 
 ### Commands to View Processes 
 
-### top : 
-it has an interactive command that shows real time view of all the processes running in linux operating system 
-### htop :
-This is an enhanced version of the top command .It has a more friendly user interface 
-### ps  
-This displays running processes for the current user 
-### ps -aux or ps -ef 
-This list all processes for all users along with their CPU & Memory usage
+`top` : it has an interactive command that shows real time view of all the processes running in linux operating system 
+
+`htop` : This is an enhanced version of the top command .It has a more friendly user interface 
+
+`ps`  : This displays running processes for the current user 
+
+`ps -aux or ps -ef` :This list all processes for all users along with their CPU & Memory usage
 
 ##############################################
 
 ## Commands to Control Processes 
 
-### kill " pid"
-This commands is used to terminate /stop process . 
+`kill " pid"` : This commands is used to terminate /stop process . 
 
-### killall :  e.g killall "process_name"
-This will terminate all processes within a given mame 
+`kill all` :  e.g kill all "process_name"  : This will terminate all processes within a given mame 
 
-## pkill : e.g pkill -u "username"
-This command allows to kill / stop or terminate processes with specific criteria users , groups ,
+`pkill` : e.g `pkill -u "username"`
+This command allows you to kill / stop or terminate processes with specific criteria users , groups ,
 
-## xkill : 
+`xkill` : 
 its a graphical tool to terminate mishaving xclient 
 
 ###################################################
 
 ## Commands to Manage Process Priorities 
 
-### nice :  e.g nice -n -20  "process command"
+`nice` :  e.g `nice -n -20  "process command"`
 
 This command starts a process with specific priorities . Niceness levels range from -20 (highest priority) to 19 (lowest priority)
 
-### renice : e.g renice  -n  19 -p "process id"
+`renice` : e.g `renice  -n  19 -p "process id"` 
 
 This changes the priority of already running process 
 
@@ -1046,20 +1036,21 @@ This changes the priority of already running process
 
 when you run the htop or top you see processes running in the foreground (active process ) .you can Suspend the processes by sending to the background 
 
-### ctrl + z :
+`ctrl + z` :
 It suspends the currently running foreground process sending to the background 
 
-### bg : 
+`bg` : 
 Resumes suspended process in the background 
 
-### fg 
+`fg`
 Brings back background processes to the foreground 
 
 ########################################################
 
 ## Commands to Monitor System Activities
 
-### vmstat : 
+`vmstat` : 
+
 It reports virtual memory statistics , including process ,memory  ,disk and cpu information
 
 procs       -----------memory----------            ---swap--     -----io----      -system-- -------cpu-------
@@ -1098,22 +1089,42 @@ wa : time spend waiting for input and output O/I
 st : time stolen from virtual machine
 gu time spend runnin guest os 
 
-### pstree 
+`pstree` 
 This displays running processes in a tree format .It shows you parent and child relationship 
 
 ## Commands to Manage Daemon Processes (systemd)
 
-systemctl start  [name of service ]
-systemctl stop  [name of service ]
-systemctl restart  [name of service ]
-systemctl status  [name of service ]
+`Daemon process` ? A daemon process is simply a background service that runs on a system without you directly interacting with it . Think of it as a program always working quietly in the background waiting to do its job . You dont the program the way you will open apps e.g zoom , whatsapp etc . Daemon process just starts with your operating system and keeps running in the background 
+
+`systemctl` start  [name of service ]
+`systemctl` stop  [name of service ]
+`systemctl` restart  [name of service ]
+`systemctl` status  [name of service ]
+
+
+`Zombie process` ? is a process that is already dead but still shows up in the process table . Its called zombie process because its dead but the entry is till alive in the system 
+
+
+***What is the difference between a Zombie Process and a Daemon process ?**
+
+A zombie process is a process that has already finished execution but still has an entry in the process tabble because the parent hasnt collected its exit status . This means the process is not running but waiting to be clean up  while daemon process on the other is an active background service that runs continously to provide system functionaly like sshd or nginx 
+
+
 
 ## Commands to View Process Status 
 
-### pidof :  e.g pidoff "program name"
+`pidof` :  e.g pidoff "program name"
 It finds the process id of a running program 
-### pgrep : 
+
+`pgrep` : 
 searches for processes based on name and other attributes 
+
+
+
+
+LAST CLASS ENDS HERE
+
+
 
 
 # HARDWARE MANAGEMENT COMMANDS 
