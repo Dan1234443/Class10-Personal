@@ -492,11 +492,15 @@ Linux System Administrators  ( Operating System )
 ## File and Directory Management 
 ## Linux File Permission 
 ## Linux File Structure 
-## Hardware Management 
 ## Process Managament 
+## File Transfer 
+
+
+
+## Hardware Management 
 ## Networking 
 ## Package Management 
-## File Transfer 
+
 
 #######################################################
 
@@ -845,35 +849,36 @@ a = (all) users , groups and others
 chmod u+rwx, g+rw , o+w   filename 
       user   group  others   chmod a-x filename 
 
-## chmod -R permission "filename" : 
+## chmod -R <permission> "<directory-name>" : 
 
- This will change the directory permission and all the directories and files within that directory 
+This will change the directory permission and all the directories and files within that directory 
 
 
-  
 Note; Directory Has seperate permissions regardless of what the files have as permissions
 
 
 ## How to change ownership of a file or directory 
 
-chown : means change ownership 
- ## sudo chown "username" "filename"  
+`chown` : means change ownership 
+`sudo chown "username" "filename" ` 
+
+
  Only the owner of a file or the root user can change the ownership of a file 
 
- chgrp : means change group  
- ## sudo chgrp "groupname"  "filename" this will change the name of the group for that particular file 
+ `chgrp` : means change group  
+ `sudo chgrp "groupname"  "filename" ` this will change the name of the group for that particular file 
 
-seneca refund
 
 
 # LINUX DIRECTORY STRUCTURE  (FILE STRUCTURE)  / = ROOT directory 
 
+Path 
 
 Linux file system is based on a hierachical structure ( tree branches )
 
 File structure that came operating system 
 
-## / (Root Directory) ;  
+## / (Root Directory) ;    `/`
   This is the top level directory in the file system . All other directories within the system lives inside this direcory and that is why its called the root 
 
 ## /Bin (Binaries)
@@ -891,8 +896,7 @@ This directory (folder) contains files that helps the operating system (Linux Ke
 This is the home directory of the root user . 
 
 ## /dev ( Devices)
-It contains device files that represents hardware and virtual devices (/dev/sda)--> storage
-represents hard drive 
+It contains device files that represents hardware and virtual devices (/dev/sda)--> storage represents hard drive 
 
 ## /sbin ( system binaries)
 This directory contains administrative binaries (commands ) .These binaries (commands) helps to carryout task such as , rebooting the operating system (root user)
@@ -904,7 +908,7 @@ This contains system wide configuration files and it contains shell scripts used
 It contains data(information) for services provided by the system e.g web server files by default this directory is empty . 
 
 ## /home 
-The home directory stores stores users .Each user on the Linux server has its own directory 
+The home directory stores users .Each user on the Linux server has its own directory 
 
 ## /tmp (Temporary Files)
 This directory is used to store temporary files created or from your application.At boot the files are deleted 
@@ -968,10 +972,6 @@ Linux File / Directory Permissions
 Linux File Structure 
 
 
-Jenkins ( Dev + Staging ) downloaded application (software ) : Jenkins 
-
-
-
 Linux Operating System Process Management 
 
 # PROCESS MANAGEMENT 
@@ -983,10 +983,7 @@ This involves you creating , managing , monitor & terminate process in Linux Ope
 
 
 Mac : Activity Monitor
-Windows: Task Manager 
-
-
-kill process ( stop )
+Windows: Task Manager
 
 
 ## Benefits of Process Management in Linux 
@@ -1003,40 +1000,37 @@ kill process ( stop )
 
 ### Commands to View Processes 
 
-### top : 
-it has an interactive command that shows real time view of all the processes running in linux operating system 
-### htop :
-This is an enhanced version of the top command .It has a more friendly user interface 
-### ps  
-This displays running processes for the current user 
-### ps -aux or ps -ef 
-This list all processes for all users along with their CPU & Memory usage
+`top` : it has an interactive command that shows real time view of all the processes running in linux operating system 
+
+`htop` : This is an enhanced version of the top command .It has a more friendly user interface 
+
+`ps`  : This displays running processes for the current user 
+
+`ps -aux or ps -ef` :This list all processes for all users along with their CPU & Memory usage
 
 ##############################################
 
 ## Commands to Control Processes 
 
-### kill " pid"
-This commands is used to terminate /stop process . 
+`kill " pid"` : This commands is used to terminate /stop process . 
 
-### killall :  e.g killall "process_name"
-This will terminate all processes within a given mame 
+`kill all` :  e.g kill all "process_name"  : This will terminate all processes within a given mame 
 
-## pkill : e.g pkill -u "username"
-This command allows to kill / stop or terminate processes with specific criteria users , groups ,
+`pkill` : e.g `pkill -u "username"`
+This command allows you to kill / stop or terminate processes with specific criteria users , groups ,
 
-## xkill : 
+`xkill` : 
 its a graphical tool to terminate mishaving xclient 
 
 ###################################################
 
 ## Commands to Manage Process Priorities 
 
-### nice :  e.g nice -n -20  "process command"
+`nice` :  e.g `nice -n -20  "process command"`
 
 This command starts a process with specific priorities . Niceness levels range from -20 (highest priority) to 19 (lowest priority)
 
-### renice : e.g renice  -n  19 -p "process id"
+`renice` : e.g `renice  -n  19 -p "process id"` 
 
 This changes the priority of already running process 
 
@@ -1046,20 +1040,21 @@ This changes the priority of already running process
 
 when you run the htop or top you see processes running in the foreground (active process ) .you can Suspend the processes by sending to the background 
 
-### ctrl + z :
+`ctrl + z` :
 It suspends the currently running foreground process sending to the background 
 
-### bg : 
+`bg` : 
 Resumes suspended process in the background 
 
-### fg 
+`fg`
 Brings back background processes to the foreground 
 
 ########################################################
 
 ## Commands to Monitor System Activities
 
-### vmstat : 
+`vmstat` : 
+
 It reports virtual memory statistics , including process ,memory  ,disk and cpu information
 
 procs       -----------memory----------            ---swap--     -----io----      -system-- -------cpu-------
@@ -1098,22 +1093,40 @@ wa : time spend waiting for input and output O/I
 st : time stolen from virtual machine
 gu time spend runnin guest os 
 
-### pstree 
+`pstree` 
 This displays running processes in a tree format .It shows you parent and child relationship 
 
 ## Commands to Manage Daemon Processes (systemd)
 
-systemctl start  [name of service ]
-systemctl stop  [name of service ]
-systemctl restart  [name of service ]
-systemctl status  [name of service ]
+`Daemon process` ? A daemon process is simply a background service that runs on a system without you directly interacting with it . Think of it as a program always working quietly in the background waiting to do its job . You dont the program the way you will open apps e.g zoom , whatsapp etc . Daemon process just starts with your operating system and keeps running in the background 
+
+`systemctl` start  [name of service ]
+`systemctl` stop  [name of service ]
+`systemctl` restart  [name of service ]
+`systemctl` status  [name of service ]
+
+
+`Zombie process` ? is a process that is already dead but still shows up in the process table . Its called zombie process because its dead but the entry is till alive in the system 
+
+
+***What is the difference between a Zombie Process and a Daemon process ?**
+
+A zombie process is a process that has already finished execution but still has an entry in the process tabble because the parent hasnt collected its exit status . This means the process is not running but waiting to be clean up  while daemon process on the other is an active background service that runs continously to provide system functionaly like sshd or nginx 
+
+
 
 ## Commands to View Process Status 
 
-### pidof :  e.g pidoff "program name"
+`pidof` :  e.g pidoff "program name"
 It finds the process id of a running program 
-### pgrep : 
+
+`pgrep` : 
 searches for processes based on name and other attributes 
+
+
+
+
+
 
 
 # HARDWARE MANAGEMENT COMMANDS 
@@ -1125,50 +1138,51 @@ searches for processes based on name and other attributes
 + Security : Access control 
 + system management and configurations 
 
-
-Storage 
-
-
 ## Commands to look at CPU INFORMATION
 
-### lscpu : Displays or provide information about your CPU architecture
-### cat /proc/cpuinfo : It displays detail information about your CPU 
+`lscpu` : Displays or provide information about your CPU architecture
+`cat /proc/cpuinfo` : It displays detail information about your CPU 
 
 
 ## Memory information Commands 
 
-### cat /proc/meminfo : It displays detailed information about ur system memory 
-### free -m  : It shows you the total memory that is free and used 
+`cat /proc/meminfo` : It displays detailed information about ur system memory 
+`free -m`  : It shows you the total memory that is free and used 
 
 ## Commands to look at the Block Devices (disk information)
 
-### lsblk : List all block devices on your system e.g ebs , disks ,usb etc
-### fdisk -l : Display disk partitions and their sizes 
-### blkid : This displays block device attributes like UUID 
+`lsblk` : List all block devices on your system e.g ebs , disks ,usb etc
+`fdisk -l` : Display disk partitions and their sizes 
+`blkid` : This displays block device attributes like UUID 
 
 ## Command to look at usb devices 
 
-### lsub : This list all the usb devices connected to the linux operating system
-### lspci List all PCI devices 
+`lsusb` : This list all the usb devices connected to the linux operating system
+`lspci` List all PCI devices 
 
 ## Command to look at the File system Disk Space Usage 
 
-### df -h : This shows disk space usage on the mounted file system in human readable format 
+`df -h `: This shows disk space usage on the mounted file system in human readable format 
+
+
+
 
 ## Disk Usage 
-### du : This estimates or shows u files and directory space usage
+
+`du` : This estimates or shows u files and directory space usage 
 
 ## command to see Hardware information in General 
-lshw :  This commands displays detailed information about hardware configuration .
-hwinfo: Detailed information about the system hardware (you need to install the command)
+
+`lshw` :  This commands displays detailed information about hardware configuration .
+`hwinfo`: Detailed information about the system hardware (you need to install the command)
 
 ## Temperature sensor 
-### sensors : Displays Temperatures , Voltage , fan speed 
+`sensors` : Displays Temperatures , Voltage , fan speed ( you will need to install the command by running `apt install lm-sensors )
 
 ## Graphics Card  Information 
-### lspci | grep VGA : It list VGA grahics adapters and their details 
+`lspci | grep VGA` : It list VGA grahics adapters and their details  
 
-### uname -m : This outputs the machine architexture
+`uname -m` : This outputs the machine architexture ( when you are installing packages on your linux machine you might need to know the system architecture )
 
 
 
@@ -1182,73 +1196,86 @@ hwinfo: Detailed information about the system hardware (you need to install the 
 
 ## Commands to Test Network Connectivity 
 
-ping [address] : It sends ICMP echo_request packets to your network host (computer)
-traceroute [address] : This traces the route taken by the packets to reach the network host (server)
-tracepath [address]: Similar to the traceroute 
+`ping` [address] : It sends ICMP (Internet Control Message Protocol ) echo_request packets to your network host (computer)
+
+`traceroute [address]` : This traces the route taken by the packets to reach the network host (server)
+
+`tracepath` [address]: Similar to the traceroute 
 
 ## Commands to Check Network Configurations 
 
-ifconfig : This displays current network configuration for all interfaces 
-ip addr show : It shows addresses assigned to all network interfaces 
-ip link show : This display the state of all network interfaces
+`ifconfig` : This displays current network configuration for all interfaces  ( you need to install ifconfig by running the following command : `apt install net-tools`)
+`ip addr show` : It shows addresses assigned to all network interfaces 
+`ip link show` : This display the state of all network interfaces
 
 ## Commands to Modify Network configurations 
 
-+ ifconfig "network interface" : This configures or modify the network interface 
-ip addr add  "network interface" : This will assigned an ip address to a network interface
-ip link set "network interface"  up/down : This will activate or deactivates a network interface
++ `ifconfig "network interface`" : This configures or modify the network interface 
+`ip addr add  "network interface`" : This will assigned an ip address to a network interface
+`ip link set "network interface`"  up/down : This will activate or deactivates a network interface
 
 ## Viewing and Managing Routing Tables
 
-+ route : It shows or modifies the ip routables 
-+ ip route show : It shows detailed information about the routing table 
-+ ip route add or del [route] : adds or deletes a route 
++ `route` : It shows or modifies the ip routables 
++ `ip route show` : It shows detailed information about the routing table 
++ `ip route add or del [route]` : adds or deletes a route 
 
 
 ## Network Connections and Statictics 
 
-+ netstat : it shows network connections , routables , interface statistics 
-+ ss : Alternative command to netstat and it displays sockets 
++ `netstat` : it shows network connections , routables , interface statistics 
++ `ss` : Alternative command to netstat and it displays sockets 
 
 ## NSlookup 
 
-+ nslook [address]  e.g nslookup google.com  : It sends a request to the internet name server(ns) to get dns information 
++ `nslook [address]`  e.g nslookup google.com  : It sends a request to the internet name server(ns) to get dns information 
 
-+ dig [address] e.g perform dns lookup 
++ `dig [address]` e.g perform dns lookup 
 
 ## Network Security and Firewall Commands 
 
-+ iptables : User-space utilitty program which helps in configuring ipv4 packet filters rules 
-+ ufw : Uncomplicated Firewall its user friendly frontend command for managing iptables 
-+ firewall-cmd  : Firewall Management tool for systems using firewall
++ `iptables` : User-space utilitty program which helps in configuring ipv4 packet filters rules 
++ `ufw` : Uncomplicated Firewall its user friendly frontend command for managing iptables 
++ `firewall-cmd`  : Firewall Management tool for systems using firewall
 
 ## SSH and SCP for secure network communication 
 
-+ ssh : This command helps you to securely connect to remote a machine 
-+ scp ; it securely transfer files between hosts (computers) over the network 
++ `ssh` : This command helps you to securely connect to remote a machine 
++ `scp` ; it securely transfer files between hosts (computers) over the network 
+
 
 
 
 ## Package Managment : 
-This refers to the methods and tools used to install , update , configure and remove software packages on the Linux Operating System . To install packages in your Linux Operating system you need SUDO previllage .
+This refers to the methods and tools used to install , update , configure and remove software packages on the Linux Operating System . To install packages in your Linux Operating system you need `SUDO previllage` .
 
-+ We have two ways of managing or installing packages in our operating systems
-+ CLI + GUI 
-+ To install softwares or application using the CLI we need a package manager 
++ We have two ways of managing or installing packages (Software) on our operating systems
++ CLI or GUI 
++ To install softwares or application using the CLI we need a `package manager` 
 
 ## PACKAGE MANAGERS 
 
-Linux has different distributions : Ubuntu , Debian , Fedora, CenTOs ,Amazon Linux , Redhert 
+Linux has different distributions : `Ubuntu , Debian , Fedora, CenTOs ,Amazon Linux , Redhat etc` 
 
 && helps you to run two commands at the same time 
 
-Linux : Apt or Apt-get  (Advanced Package Tool) : Ubuntu , Debian 
-      : dnf   : Fedora 22 , CenTOS , Redhert Servers ) 
-      : yum   : redhert , older versions Fedora and CenTOs
-      : snap  : Universal Package managers 
-      : flatpak : Universal Package managers 
+Linux : `Apt or Apt-get`  (Advanced Package Tool) :--->  Ubuntu , Debian 
+      : `dnf`   : Fedora 22 , CenTOS , Redhat Servers ) 
+      : `yum`   : redhat, older versions Fedora and CenTOs
+      : `snap`  : Universal Package managers 
+      : `flatpak` : Universal Package managers 
 
-sudo apt install "package name"
+
+
+sudo : administrative previllages 
+apt : package manager 
+action  : install , upgrade , remove , uninstall 
+package: The software you wish to install 
+
+full command looks like  `sudo apt install git` or `sudo apt-get install git`
+
+
+`sudo apt install "package name"
 sudo apt remove "package name"
 sudo apt uninstall "package name"
 sudo apt upgrade 
@@ -1266,9 +1293,12 @@ sudo yum update
 
 
 we have the wget 
+
 # Wget : 
 
 This command is used in downloading software , app files from websites or internet using http ,https or ftp protocols .
+
+
 
 
 
@@ -1280,6 +1310,13 @@ https://brew.sh  and run this command:
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
+
+To verify if brew has been installed on your Mac Run the following command ` brew --version`
+
+to install packages or software using your Macbook Package manager which is brew  you will need to run the following command 
+
+`brew install <package>
+
 
 
 
@@ -1295,17 +1332,31 @@ https://brew.sh  and run this command:
 + Scoop e.g scoop install packagename
 
 
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-10.6.0.92116.zip
+
+
+
+
 ## Package Type or File Type  ( file extensions)
+
 + Files installed from the internet will come in a compressed format .
 + Files , softwares or applications in compressed format cant be used until you deflate .
 
-## Zip  (extension .zip) for example welcome.zip 
-To use the zip command you need to install zip 
+`Zip`  (extension .zip) for example welcome.zip 
+Once a file is downloaded in a zip format you will need to unzip the package before you can use it . 
+To run the zip command you need to install zip on the linux operating system .To install zip you need to run the following command 
 
-## Tar (tape archived ) (exention .tar) for example file.tar 
-## Rar (extenstion .rar) :
-For extremely large files , data compression ,error rcovery and file spaning 
-## Gzip : compression better .zip 
+`sudo apt or apt-get install zip`
+
+`Tar` (tape archived ) (exention .tar) for example file.tar 
+This is used for archiving files and directories . It can be used to compress files and directories into a single file for easier storage and transfer . To run the tar command you need to install tar on your linux operating system by running the following command "sudo apt install tar'
+
+`Rar (extenstion .rar)` :
+This is a proprietary archive file format that supports data compression , error recovery and file spanning . To run the rar command you need to install rar on your linux operating system by running the following command "sudo apt install rar"
+its For extremely large files , data compression ,error rcovery and file spaning 
+
+`Gzip` : compression better .zip 
+
 
 
 # Importance or Benefit of Package Management 
@@ -1315,3 +1366,12 @@ For extremely large files , data compression ,error rcovery and file spaning
 + stability and consistency   : Package managers maintain the versions of your software installed allows users to be able to install a specific version or can roll back to previous versions . 
 + System Management .you can use package managers to maintain system configurations 
 
+
+END 
+
++ Success Story 
++ Knowledge Check 
++ Linux command competition 
+
+
+BASH SHELL SCIRIPTING 
