@@ -92,7 +92,7 @@ To succeed
 + Laptop or Desktops ( Operating --> Mac or Windows ). Chrome OS (NO)
 + External monitor
 + Attend classes
-+ Group Assignments
++ Group Assignments added this for practice
 
 
 
